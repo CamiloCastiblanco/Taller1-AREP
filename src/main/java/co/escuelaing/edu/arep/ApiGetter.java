@@ -17,6 +17,9 @@ public abstract class ApiGetter {
     private StringBuilder query;
     private Cache cache = Cache.getInstance();
     
+    /**
+     * Constructor for ApiGetter
+     */
     public ApiGetter() {
     }
     public ApiGetter(String URL, String PLOT) {
@@ -40,6 +43,13 @@ public abstract class ApiGetter {
         }
         query.append(PLOT);
     }
+    /**
+     * Metodo que obtiene el json que contiene la información de las películas ya consultadas anteriormente y en caso de encontrarla devuelve instantaneamente el json y si no, 
+     * lo agrega al cache y luego lo devuelve 
+     * 
+     * @return response json que contiene toda la info
+     * 
+     */
     public String getJson() throws IOException {
         if (cache.contains(query.toString())) {
             return cache.get(query.toString());

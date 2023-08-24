@@ -1,9 +1,8 @@
 package co.escuelaing.edu.arep;
-
 import static spark.Spark.*;
 import spark.Request;
 import java.io.*;
-import co.escuelaing.edu.arep.Movie;
+
 
 public class HttpServer {
 
@@ -11,7 +10,7 @@ public class HttpServer {
     public static void main(String[] args) {
         port(getPort());
         staticFiles.location("/static");
-        get("/movie", (req, res) -> {
+        get("/movies", (req, res) -> {
             res.type("application/json");
             return identifyMovie(req);
         });
@@ -33,6 +32,5 @@ public class HttpServer {
     }
 }
 
-// http://www.omdbapi.com/?i=tt3896198&apikey=760fda9b
 
 

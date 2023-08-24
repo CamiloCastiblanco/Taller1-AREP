@@ -25,7 +25,7 @@ class Script extends React.Component {
     //Funcion para realizar la consulta de la pelicula. Mapea el json y lo muestra en el html
     loadPostMsg() {
         let url =
-            "/movie?movie=" + this.state.movie;
+            "/movies?movie=" + this.state.movie;
         fetch(url, { method: "GET" })
             .then((x) => x.json())
             .then((y) => {

@@ -1,7 +1,7 @@
 package co.escuelaing.edu.arep;
 
 public class MovieGetter extends ApiGetter {
-    private static final String URL = "http://www.omdbapi.com/?t=";
+    private static final String URL = "http://www.omdbapi.com/?t=Green+Lantern";
     private static final String PLOT = "&plot=full";
 
 

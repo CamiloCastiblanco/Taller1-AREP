@@ -1,11 +1,7 @@
 
 function visualizer($node) {
     var base = this;
-
-   
     base.node = $node;
-
-    
     base.transform = {
         "<>": "div",
         class: "visual-package visual-${show} visual-${type}",
@@ -50,36 +46,26 @@ function visualizer($node) {
 visualizer.prototype = {
     visualize: function (json) {
         var base = this;
-
-        
         base.node
             .empty()
             .json2html(base.convert("json", json, "open"), base.transform);
-
-      
         base.events();
     },
 
     
     getValue: function (obj) {
         var type = $.type(obj);
-
-        
         switch (type) {
             case "array":
             case "object":
                 return undefined;
                 break;
-
             case "function":
-                
                 return "function";
                 break;
-
             case "string":
                 return "'" + obj + "'";
                 break;
-
             default:
                 return obj;
                 break;
@@ -89,18 +75,13 @@ visualizer.prototype = {
    
     children: function (obj) {
         var base = this;
-
         var type = $.type(obj);
-
-      
         switch (type) {
             case "array":
             case "object":
                 return json2html.transform(obj, base.transform);
                 break;
-
             default:
-               
                 break;
         }
     },
@@ -108,51 +89,35 @@ visualizer.prototype = {
    
     convert: function (name, obj, show) {
         var base = this;
-
         var type = $.type(obj);
-
         if (show === undefined) show = "closed";
-
         var children = [];
-
-       
         switch (type) {
             case "array":
-               
                 var len = obj.length;
                 for (var j = 0; j < len; ++j) {
-                   
                     children[j] = base.convert(j, obj[j]);
                 }
                 break;
-
             case "object":
-              
                 var j = 0;
                 for (var prop in obj) {
                     children[j] = base.convert(prop, obj[prop]);
                     j++;
                 }
                 break;
-
             default:
-                
                 children = obj;
                 break;
         }
-
         return { name: name, value: children, type: type, show: show };
     },
 
    
     events: function () {
         var base = this;
-
-       
         base.node.find(".visual-header").click(function () {
             var $parent = $(this).parent();
-
-           
             if ($parent.hasClass("visual-closed")) {
                 $parent.removeClass("visual-closed");
                 $parent.addClass("visual-open");
